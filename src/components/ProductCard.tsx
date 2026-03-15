@@ -98,8 +98,8 @@ export function ProductCard({ product, delay = 0 }: ProductCardProps) {
         </div>
 
         {/* Tag */}
-        <div className="absolute top-3 left-3">
-          <span className="bg-white text-black text-[10px] font-black tracking-widest uppercase px-2 py-1 border border-black">
+        <div className="absolute top-2.5 left-2.5">
+          <span className="bg-white text-black text-[9px] font-black tracking-widest uppercase px-1.5 py-0.5 border border-black opacity-90">
             {product.tag}
           </span>
         </div>
@@ -111,15 +111,15 @@ export function ProductCard({ product, delay = 0 }: ProductCardProps) {
               initial={{ y: "100%" }}
               animate={{ y: 0 }}
               exit={{ y: "100%" }}
-              transition={{ duration: 0.2, ease: [0.76, 0, 0.24, 1] }}
-              className="absolute bottom-0 left-0 right-0 bg-white border-t-2 border-black p-3"
+              transition={{ duration: 0.4, ease: [0.19, 1, 0.22, 1] }}
+              className="absolute bottom-0 left-0 right-0 bg-white border-t-2 border-black p-2.5"
             >
-              <div className="flex gap-2 mb-2">
+              <div className="flex gap-1.5 mb-2 overflow-x-auto no-scrollbar">
                 {product.sizes.map((size) => (
                   <button
                     key={size}
                     onClick={() => setSelectedSize(size)}
-                    className={`text-[10px] font-black px-2 py-1 border-2 border-black transition-all duration-100 ${
+                    className={`text-[9px] font-black px-1.5 py-0.5 border-2 border-black transition-all duration-150 ${
                       selectedSize === size
                         ? "bg-black text-white"
                         : "bg-white text-black hover:bg-black hover:text-white"
@@ -131,9 +131,9 @@ export function ProductCard({ product, delay = 0 }: ProductCardProps) {
               </div>
               <button
                 onClick={handleAdd}
-                className={`w-full py-2 text-[11px] font-black tracking-widest uppercase flex items-center justify-center gap-2 border-2 border-black transition-all duration-200 ${
+                className={`w-full py-1.5 text-[10px] font-black tracking-widest uppercase flex items-center justify-center gap-1.5 border-2 border-black transition-all duration-300 ease-[0.19,1,0.22,1] ${
                   selectedSize
-                    ? "bg-black text-white hover:bg-white hover:text-black"
+                    ? "bg-black text-white hover:bg-white hover:text-black shadow-[2px_2px_0px_#00000033]"
                     : "bg-white text-black opacity-50"
                 }`}
                 data-magnetic
@@ -143,22 +143,22 @@ export function ProductCard({ product, delay = 0 }: ProductCardProps) {
                     <motion.span
                       key="check"
                       className="flex items-center gap-1"
-                      initial={{ scale: 0 }}
-                      animate={{ scale: 1 }}
-                      exit={{ scale: 0 }}
+                      initial={{ opacity: 0, y: 5 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -5 }}
                     >
-                      <Check size={12} />
+                      <Check size={11} />
                       ADDED
                     </motion.span>
                   ) : (
                     <motion.span
                       key="add"
                       className="flex items-center gap-1"
-                      initial={{ scale: 0 }}
-                      animate={{ scale: 1 }}
-                      exit={{ scale: 0 }}
+                      initial={{ opacity: 0, y: 5 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -5 }}
                     >
-                      <Plus size={12} />
+                      <Plus size={11} />
                       {selectedSize ? "QUICK ADD" : "SELECT SIZE"}
                     </motion.span>
                   )}
@@ -170,10 +170,10 @@ export function ProductCard({ product, delay = 0 }: ProductCardProps) {
       </div>
 
       {/* Info */}
-      <div className="p-3">
+      <div className="p-2.5 md:p-3">
         <div className="flex justify-between items-start">
-          <h3 className="font-black text-sm uppercase tracking-tight leading-tight">{product.name}</h3>
-          <span className="font-black text-sm">{product.price}</span>
+          <h3 className="font-black text-[11px] md:text-xs uppercase tracking-tight leading-tight max-w-[70%]">{product.name}</h3>
+          <span className="font-black text-[11px] md:text-xs opacity-80">{product.price}</span>
         </div>
       </div>
     </div>

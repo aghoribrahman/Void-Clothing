@@ -22,42 +22,42 @@ export function Nav() {
   return (
     <>
       <motion.nav
-        className="fixed top-4 left-1/2 z-50"
+        className="fixed top-3 left-1/2 z-50 w-auto"
         initial={{ x: "-50%", y: -80, opacity: 0 }}
         animate={{ x: "-50%", y: 0, opacity: 1 }}
-        transition={{ delay: 0.3, duration: 0.6, ease: [0.34, 1.56, 0.64, 1] }}
+        transition={{ duration: 0.8, ease: [0.19, 1, 0.22, 1] }}
       >
         <div
-          className={`flex items-center gap-8 px-6 py-3 border-2 border-black transition-all duration-300 ${
+          className={`flex items-center gap-6 px-4 py-2 border-2 border-black transition-all duration-500 whitespace-nowrap ${
             scrolled
-              ? "bg-black text-white shadow-[4px_4px_0px_rgba(255,255,255,0.3)]"
-              : "bg-white text-black shadow-[4px_4px_0px_#000]"
+              ? "bg-black text-white shadow-[2px_2px_0px_rgba(255,255,255,0.3)]"
+              : "bg-white text-black shadow-[3px_3px_0px_#000]"
           }`}
         >
-          <span className="font-black text-lg tracking-[0.3em] uppercase">VOID</span>
+          <span className="font-black text-base tracking-[0.25em] uppercase">VOID</span>
 
-          <div className="hidden md:flex gap-6">
+          <div className="hidden md:flex gap-5">
             {links.map((link) => (
               <a
                 key={link}
                 href="#"
-                className="text-xs font-bold tracking-widest uppercase relative group"
+                className="text-[10px] font-black tracking-[0.15em] uppercase relative group"
               >
                 {link}
-                <span className="absolute -bottom-0.5 left-0 w-0 h-0.5 bg-current group-hover:w-full transition-all duration-200" />
+                <span className="absolute -bottom-0.5 left-0 w-0 h-0.5 bg-current group-hover:w-full transition-all duration-300 ease-[0.19,1,0.22,1]" />
               </a>
             ))}
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2.5">
             <button
               ref={cartRef as React.Ref<HTMLButtonElement>}
-              className="relative p-1"
+              className="relative p-0.5"
               data-magnetic
             >
-              <ShoppingBag size={18} strokeWidth={2.5} />
+              <ShoppingBag size={16} strokeWidth={2.5} />
               {cartCount > 0 && (
-                <span className="absolute -top-1 -right-1 w-4 h-4 bg-black text-white text-[9px] font-black flex items-center justify-center border border-white">
+                <span className="absolute -top-1 -right-1.5 w-3.5 h-3.5 bg-black text-white text-[8px] font-black flex items-center justify-center border border-white">
                   {cartCount}
                 </span>
               )}

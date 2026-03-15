@@ -66,8 +66,8 @@
 
 /* Custom cursor */
 .cursor-dot {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
   background: #000;
   border-radius: 50%;
   position: fixed;
@@ -76,14 +76,14 @@
   pointer-events: none;
   z-index: 99999;
   transform: translate(-50%, -50%);
-  transition: transform 0.05s ease;
+  transition: transform 0.1s cubic-bezier(0.19, 1, 0.22, 1);
   mix-blend-mode: difference;
 }
 
 .cursor-outline {
-  width: 36px;
-  height: 36px;
-  border: 2px solid #000;
+  width: 32px;
+  height: 32px;
+  border: 1px solid #000;
   border-radius: 50%;
   position: fixed;
   top: 0;
@@ -91,13 +91,14 @@
   pointer-events: none;
   z-index: 99998;
   transform: translate(-50%, -50%);
-  transition: width 0.2s ease, height 0.2s ease, transform 0.12s ease;
+  transition: width 0.3s cubic-bezier(0.19, 1, 0.22, 1), height 0.3s cubic-bezier(0.19, 1, 0.22, 1), transform 0.2s cubic-bezier(0.19, 1, 0.22, 1);
   mix-blend-mode: difference;
 }
 
 .cursor-outline.expanded {
-  width: 60px;
-  height: 60px;
+  width: 52px;
+  height: 52px;
+  border-width: 2px;
 }
 
 /* Glitch effect */
@@ -194,11 +195,11 @@
 /* Scroll reveal */
 .reveal-hidden {
   opacity: 0;
-  transform: translateY(60px) scale(0.95);
+  transform: translateY(30px) scale(0.98);
 }
 
 .reveal-visible {
   opacity: 1;
   transform: translateY(0) scale(1);
-  transition: opacity 0.7s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: opacity 1.2s cubic-bezier(0.19, 1, 0.22, 1), transform 1.2s cubic-bezier(0.19, 1, 0.22, 1);
 }
