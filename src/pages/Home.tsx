@@ -7,9 +7,9 @@ import { Footer } from "@/components/Footer";
 import { Marquee } from "@/components/Marquee";
 
 const products = [
-  { id: 1, name: "VOID OVERSIZED TEE", price: "$89", tag: "BESTSELLER", sizes: ["XS", "S", "M", "L", "XL"], pattern: "grid", imageUrl: "/images/products/tee_black.png" },
-  { id: 2, name: "SHADOW CARGO PANT", price: "$195", tag: "LIMITED", sizes: ["28", "30", "32", "34"], pattern: "diagonal", imageUrl: "/images/products/cargo_pant.png" },
-  { id: 3, name: "NULL HOODIE", price: "$145", tag: "NEW", sizes: ["S", "M", "L", "XL", "XXL"], pattern: "circle", imageUrl: "/images/products/hoodie_black.png" },
+  { id: 1, name: "VOID OVERSIZED TEE", price: "$89", tag: "BESTSELLER", sizes: ["XS", "S", "M", "L", "XL"], pattern: "grid", imageUrl: "/images/products/tee_black.webp" },
+  { id: 2, name: "SHADOW CARGO PANT", price: "$195", tag: "LIMITED", sizes: ["28", "30", "32", "34"], pattern: "diagonal", imageUrl: "/images/products/cargo_pant.webp" },
+  { id: 3, name: "NULL HOODIE", price: "$145", tag: "NEW", sizes: ["S", "M", "L", "XL", "XXL"], pattern: "circle", imageUrl: "/images/products/hoodie_black.webp" },
   { id: 4, name: "BINARY JACKET", price: "$320", tag: "RARE", sizes: ["S", "M", "L"], pattern: "noise" },
   { id: 5, name: "STATIC SHORTS", price: "$75", tag: "DROP #7", sizes: ["S", "M", "L", "XL"], pattern: "diagonal" },
   { id: 6, name: "GHOST LONGSLEEVE", price: "$110", tag: "NEW", sizes: ["XS", "S", "M", "L"], pattern: "circle" },

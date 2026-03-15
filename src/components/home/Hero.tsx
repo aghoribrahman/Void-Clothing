@@ -12,7 +12,7 @@ export function Hero() {
       {/* Large background text */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden">
         <div className="absolute inset-0 opacity-[0.05] grayscale mix-blend-multiply">
-          <img src="/images/lookbook/lookbook_1.png" className="w-full h-full object-cover" alt="" />
+          <img src="/images/lookbook/lookbook_1.webp" className="w-full h-full object-cover" alt="" />
         </div>
         <span className="text-[22vw] font-black text-[#1A1A1A] opacity-[0.035] tracking-tight leading-none whitespace-nowrap z-10">
           VOID

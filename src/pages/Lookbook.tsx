@@ -3,9 +3,9 @@ import { Footer } from "@/components/Footer";
 import { motion } from "framer-motion";
 
 const images = [
-  { src: "/images/lookbook/lookbook_1.png", title: "THE OVERSIZED SILHOUETTE", desc: "DROP #07 • COLLECTION" },
-  { src: "/images/lookbook/lookbook_2.png", title: "TEXTURE & FORM", desc: "EXPERIMENTAL SERIES" },
-  { src: "/images/lookbook/lookbook_3.png", title: "SHADOW PLAY", desc: "MONOCHROME ESSENTIALS" },
+  { src: "/images/lookbook/lookbook_1.webp", title: "THE OVERSIZED SILHOUETTE", desc: "DROP #07 • COLLECTION" },
+  { src: "/images/lookbook/lookbook_2.webp", title: "TEXTURE & FORM", desc: "EXPERIMENTAL SERIES" },
+  { src: "/images/lookbook/lookbook_3.webp", title: "SHADOW PLAY", desc: "MONOCHROME ESSENTIALS" },
 ];
 
 export default function Lookbook() {
