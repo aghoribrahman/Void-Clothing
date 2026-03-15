@@ -30,7 +30,13 @@ export default function Lookbook() {
         {images.map((img, i) => (
           <div key={i} className="border-b-2 md:border-r-2 border-black relative group overflow-hidden">
             <div className="aspect-[3/4] overflow-hidden grayscale hover:grayscale-0 transition-all duration-700">
-              <img src={img.src} alt={img.title} className="w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform duration-1000" />
+              <img 
+                src={img.src} 
+                alt={img.title} 
+                loading="lazy"
+                decoding="async"
+                className="w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform duration-1000" 
+              />
             </div>
             <div className="absolute inset-x-0 bottom-0 p-6 bg-white border-t-2 border-black transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[0.19,1,0.22,1]">
               <span className="text-[9px] font-black tracking-widest opacity-60 block mb-1">{img.desc}</span>

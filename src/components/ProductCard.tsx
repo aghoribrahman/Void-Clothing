@@ -49,6 +49,8 @@ export function ProductCard({ product, delay = 0, imageAspectRatio = "aspect-[3/
             <img 
               src={product.imageUrl} 
               alt={product.name} 
+              loading="lazy"
+              decoding="async"
               className={`w-full h-full object-cover transition-transform duration-700 ease-[0.19,1,0.22,1] ${hovering ? "scale-110" : "scale-100"}`}
               style={{ filter: hovering ? "contrast(1.1) brightness(0.9)" : "none" }}
             />
