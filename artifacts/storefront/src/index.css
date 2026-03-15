@@ -59,7 +59,7 @@
 
   body {
     @apply bg-background text-foreground font-sans antialiased;
-    cursor: none;
+    cursor: auto;
     overflow-x: hidden;
   }
 }
