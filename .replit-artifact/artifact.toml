@@ -2,7 +2,7 @@ kind = "web"
 previewPath = "/"
 title = "VOID — Gen-Z Fashion Storefront"
 version = "1.0.0"
-id = "artifacts/storefront"
+id = "void-clothing-frontend"
 router = "path"
 
 [[integratedSkills]]
@@ -15,15 +15,15 @@ name = "web"
 paths = ["/"]
 
 [services.development]
-run = "pnpm --filter @workspace/storefront run dev"
+run = "pnpm run dev"
 
 [services.env]
 PORT = "18539"
 BASE_PATH = "/"
 
 [services.production]
-build = ["pnpm", "--filter", "@workspace/storefront", "run", "build"]
-publicDir = "artifacts/storefront/dist/public"
+build = ["pnpm", "run", "build"]
+publicDir = "dist/public"
 serve = "static"
 
 [[services.production.rewrites]]

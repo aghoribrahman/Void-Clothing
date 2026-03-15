@@ -1,11 +1,5 @@
 modules = ["nodejs-24"]
 
-[[artifacts]]
-id = "artifacts/api-server"
-
-[[artifacts]]
-id = "artifacts/mockup-sandbox"
-
 [deployment]
 router = "application"
 deploymentTarget = "autoscale"
@@ -18,9 +12,5 @@ env = { "CI" = "true" }
 runButton = "Project"
 
 [agent]
-stack = "PNPM_WORKSPACE"
+stack = "NODEJS"
 expertMode = true
-
-[postMerge]
-path = "scripts/post-merge.sh"
-timeoutMs = 20000
