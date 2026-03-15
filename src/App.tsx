@@ -3,6 +3,7 @@ import { ReactLenis } from "lenis/react";
 import Home from "@/pages/Home";
 import { Nav } from "@/components/Nav";
 import { CustomCursor } from "@/components/CustomCursor";
+import { ScrollToTop } from "@/components/ScrollToTop";
 import { Router, Route, Switch, useLocation } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
 import Shop from "@/pages/Shop";
@@ -27,6 +28,7 @@ function AppContent() {
           exit={{ opacity: 0, y: -20 }}
           transition={{ duration: 0.4, ease: [0.19, 1, 0.22, 1] }}
         >
+          <ScrollToTop />
           <Switch>
             <Route path="/" component={Home} />
             <Route path="/shop" component={Shop} />
