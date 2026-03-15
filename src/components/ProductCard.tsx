@@ -37,7 +37,7 @@ export function ProductCard({ product, delay = 0, imageAspectRatio = "aspect-[3/
     <div
       ref={revealRef as React.Ref<HTMLDivElement>}
       style={{ transitionDelay: `${delay}ms` }}
-      className="relative border-2 border-black brutal-shadow bg-white grain overflow-hidden cursor-none"
+      className="relative border-2 border-black brutal-shadow bg-white grain overflow-hidden"
       onMouseEnter={() => setHovering(true)}
       onMouseLeave={() => setHovering(false)}
     >
