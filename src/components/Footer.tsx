@@ -1,25 +1,33 @@
+import { Link } from "wouter";
+
 export function Footer() {
+  const footerData = [
+    { title: "SHOP", links: [{ name: "New Arrivals", path: "/shop" }, { name: "Tops", path: "/shop" }, { name: "Bottoms", path: "/shop" }, { name: "Outerwear", path: "/shop" }, { name: "Accessories", path: "/shop" }] },
+    { title: "INFO", links: [{ name: "About", path: "/about" }, { name: "Manifesto", path: "/about" }, { name: "Sustainability", path: "/about" }, { name: "Size Guide", path: "/about" }, { name: "Care", path: "/about" }] },
+    { title: "CONNECT", links: [{ name: "Instagram", path: "#" }, { name: "TikTok", path: "#" }, { name: "Newsletter", path: "#" }, { name: "Press", path: "#" }, { name: "Wholesale", path: "#" }] },
+  ];
+
   return (
     <footer className="border-t-0 bg-white px-6 md:px-12 py-12">
       <div className="flex flex-col md:flex-row justify-between gap-8 mb-12">
         <div>
-          <h3 className="text-4xl font-black tracking-tight uppercase mb-1">VOID</h3>
+          <Link href="/">
+            <h3 className="text-4xl font-black tracking-tight uppercase mb-1 cursor-pointer">VOID</h3>
+          </Link>
           <p className="text-[10px] text-[#1A1A1A]/50 font-bold tracking-[0.3em] uppercase">SS26 COLLECTION</p>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-8 text-xs">
-          {[
-            { title: "SHOP", links: ["New Arrivals", "Tops", "Bottoms", "Outerwear", "Accessories"] },
-            { title: "INFO", links: ["About", "Manifesto", "Sustainability", "Size Guide", "Care"] },
-            { title: "CONNECT", links: ["Instagram", "TikTok", "Newsletter", "Press", "Wholesale"] },
-          ].map((col) => (
+          {footerData.map((col) => (
             <div key={col.title}>
               <h4 className="font-black tracking-[0.2em] mb-3">{col.title}</h4>
               <ul className="space-y-2">
                 {col.links.map((link) => (
-                  <li key={link}>
-                    <a href="#" className="text-[#1A1A1A]/50 font-medium hover:text-black transition-colors duration-100">
-                      {link}
-                    </a>
+                  <li key={link.name}>
+                    <Link href={link.path}>
+                      <span className="text-[#1A1A1A]/50 font-medium hover:text-black transition-colors duration-100 cursor-pointer">
+                        {link.name}
+                      </span>
+                    </Link>
                   </li>
                 ))}
               </ul>

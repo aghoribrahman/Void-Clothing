@@ -10,14 +10,17 @@ interface Product {
   tag: string;
   sizes: string[];
   pattern: string;
+  imageUrl?: string;
 }
 
 interface ProductCardProps {
   product: Product;
   delay?: number;
+  imageAspectRatio?: string;
+  imageUrl?: string;
 }
 
-export function ProductCard({ product, delay = 0 }: ProductCardProps) {
+export function ProductCard({ product, delay = 0, imageAspectRatio = "aspect-[3/4]" }: ProductCardProps) {
   const [added, setAdded] = useState(false);
   const [hovering, setHovering] = useState(false);
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
@@ -39,62 +42,71 @@ export function ProductCard({ product, delay = 0 }: ProductCardProps) {
       onMouseLeave={() => setHovering(false)}
     >
       {/* Product image area */}
-      <div className="relative aspect-[3/4] overflow-hidden border-b-2 border-black bg-[#1A1A1A]">
+      <div className={`relative ${imageAspectRatio} overflow-hidden border-b-2 border-black bg-[#1A1A1A]`}>
         {/* Abstract pattern as product placeholder */}
         <div className="absolute inset-0 flex items-center justify-center">
-          <svg
-            viewBox="0 0 200 260"
-            className="w-full h-full"
-            style={{ filter: hovering ? "invert(1)" : "none", transition: "filter 0.3s" }}
-          >
-            <rect width="200" height="260" fill="#1A1A1A" />
-            {product.pattern === "grid" && (
-              <>
-                {Array.from({ length: 10 }).map((_, i) => (
-                  <line key={`h${i}`} x1="0" y1={i * 26} x2="200" y2={i * 26} stroke="#333" strokeWidth="1" />
-                ))}
-                {Array.from({ length: 8 }).map((_, i) => (
-                  <line key={`v${i}`} x1={i * 28} y1="0" x2={i * 28} y2="260" stroke="#333" strokeWidth="1" />
-                ))}
-                <text x="100" y="130" textAnchor="middle" dominantBaseline="middle" fill="white" fontSize="32" fontWeight="900" fontFamily="Inter, sans-serif">
-                  {product.id < 10 ? `0${product.id}` : product.id}
-                </text>
-              </>
-            )}
-            {product.pattern === "diagonal" && (
-              <>
-                {Array.from({ length: 20 }).map((_, i) => (
-                  <line key={i} x1={i * 20 - 100} y1="0" x2={i * 20 + 100} y2="260" stroke="#444" strokeWidth="1.5" />
-                ))}
-                <text x="100" y="130" textAnchor="middle" dominantBaseline="middle" fill="white" fontSize="32" fontWeight="900" fontFamily="Inter, sans-serif">
-                  {product.id < 10 ? `0${product.id}` : product.id}
-                </text>
-              </>
-            )}
-            {product.pattern === "circle" && (
-              <>
-                {Array.from({ length: 6 }).map((_, i) => (
-                  <circle key={i} cx="100" cy="130" r={(i + 1) * 22} fill="none" stroke="#444" strokeWidth="1.5" />
-                ))}
-                <text x="100" y="130" textAnchor="middle" dominantBaseline="middle" fill="white" fontSize="32" fontWeight="900" fontFamily="Inter, sans-serif">
-                  {product.id < 10 ? `0${product.id}` : product.id}
-                </text>
-              </>
-            )}
-            {product.pattern === "noise" && (
-              <>
-                <filter id="noise-filter">
-                  <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" />
-                  <feColorMatrix type="saturate" values="0" />
-                  <feBlend in="SourceGraphic" mode="multiply" />
-                </filter>
-                <rect width="200" height="260" filter="url(#noise-filter)" opacity="0.5" fill="#888" />
-                <text x="100" y="130" textAnchor="middle" dominantBaseline="middle" fill="white" fontSize="32" fontWeight="900" fontFamily="Inter, sans-serif">
-                  {product.id < 10 ? `0${product.id}` : product.id}
-                </text>
-              </>
-            )}
-          </svg>
+          {product.imageUrl ? (
+            <img 
+              src={product.imageUrl} 
+              alt={product.name} 
+              className={`w-full h-full object-cover transition-transform duration-700 ease-[0.19,1,0.22,1] ${hovering ? "scale-110" : "scale-100"}`}
+              style={{ filter: hovering ? "contrast(1.1) brightness(0.9)" : "none" }}
+            />
+          ) : (
+            <svg
+              viewBox="0 0 200 260"
+              className="w-full h-full"
+              style={{ filter: hovering ? "invert(1)" : "none", transition: "filter 0.3s" }}
+            >
+              <rect width="200" height="260" fill="#1A1A1A" />
+              {product.pattern === "grid" && (
+                <>
+                  {Array.from({ length: 10 }).map((_, i) => (
+                    <line key={`h${i}`} x1="0" y1={i * 26} x2="200" y2={i * 26} stroke="#333" strokeWidth="1" />
+                  ))}
+                  {Array.from({ length: 8 }).map((_, i) => (
+                    <line key={`v${i}`} x1={i * 28} y1="0" x2={i * 28} y2="260" stroke="#333" strokeWidth="1" />
+                  ))}
+                  <text x="100" y="130" textAnchor="middle" dominantBaseline="middle" fill="white" fontSize="32" fontWeight="900" fontFamily="Inter, sans-serif">
+                    {product.id < 10 ? `0${product.id}` : product.id}
+                  </text>
+                </>
+              )}
+              {product.pattern === "diagonal" && (
+                <>
+                  {Array.from({ length: 20 }).map((_, i) => (
+                    <line key={i} x1={i * 20 - 100} y1="0" x2={i * 20 + 100} y2="260" stroke="#444" strokeWidth="1.5" />
+                  ))}
+                  <text x="100" y="130" textAnchor="middle" dominantBaseline="middle" fill="white" fontSize="32" fontWeight="900" fontFamily="Inter, sans-serif">
+                    {product.id < 10 ? `0${product.id}` : product.id}
+                  </text>
+                </>
+              )}
+              {product.pattern === "circle" && (
+                <>
+                  {Array.from({ length: 6 }).map((_, i) => (
+                    <circle key={i} cx="100" cy="130" r={(i + 1) * 22} fill="none" stroke="#444" strokeWidth="1.5" />
+                  ))}
+                  <text x="100" y="130" textAnchor="middle" dominantBaseline="middle" fill="white" fontSize="32" fontWeight="900" fontFamily="Inter, sans-serif">
+                    {product.id < 10 ? `0${product.id}` : product.id}
+                  </text>
+                </>
+              )}
+              {product.pattern === "noise" && (
+                <>
+                  <filter id="noise-filter">
+                    <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" />
+                    <feColorMatrix type="saturate" values="0" />
+                    <feBlend in="SourceGraphic" mode="multiply" />
+                  </filter>
+                  <rect width="200" height="260" filter="url(#noise-filter)" opacity="0.5" fill="#888" />
+                  <text x="100" y="130" textAnchor="middle" dominantBaseline="middle" fill="white" fontSize="32" fontWeight="900" fontFamily="Inter, sans-serif">
+                    {product.id < 10 ? `0${product.id}` : product.id}
+                  </text>
+                </>
+              )}
+            </svg>
+          )}
         </div>
 
         {/* Tag */}

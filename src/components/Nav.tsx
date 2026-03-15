@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ShoppingBag } from "lucide-react";
+import { Link, useLocation } from "wouter";
 import { useMagneticCursor } from "@/hooks/useMagneticCursor";
 
 export function Nav() {
@@ -17,7 +18,13 @@ export function Nav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const links = ["NEW DROP", "SHOP", "LOOKBOOK", "ABOUT"];
+  const [location] = useLocation();
+  const links = [
+    { name: "NEW DROP", path: "/" },
+    { name: "SHOP", path: "/shop" },
+    { name: "LOOKBOOK", path: "/lookbook" },
+    { name: "ABOUT", path: "/about" },
+  ];
 
   return (
     <>
@@ -38,14 +45,18 @@ export function Nav() {
 
           <div className="hidden md:flex gap-5">
             {links.map((link) => (
-              <a
-                key={link}
-                href="#"
-                className="text-[10px] font-black tracking-[0.15em] uppercase relative group"
+              <Link
+                key={link.name}
+                href={link.path}
+                className={`text-[10px] font-black tracking-[0.15em] uppercase relative group ${
+                  location === link.path ? "opacity-100" : "opacity-60 hover:opacity-100"
+                }`}
               >
-                {link}
-                <span className="absolute -bottom-0.5 left-0 w-0 h-0.5 bg-current group-hover:w-full transition-all duration-300 ease-[0.19,1,0.22,1]" />
-              </a>
+                {link.name}
+                <span className={`absolute -bottom-0.5 left-0 h-0.5 bg-current transition-all duration-300 ease-[0.19,1,0.22,1] ${
+                  location === link.path ? "w-full" : "w-0 group-hover:w-full"
+                }`} />
+              </Link>
             ))}
           </div>
 
@@ -91,17 +102,23 @@ export function Nav() {
             </div>
             <div className="flex flex-col gap-8">
               {links.map((link, i) => (
-                <motion.a
-                  key={link}
-                  href="#"
-                  className="text-white text-5xl font-black tracking-tight uppercase hover:pl-4 transition-all duration-200"
-                  initial={{ x: 60, opacity: 0 }}
-                  animate={{ x: 0, opacity: 1 }}
-                  transition={{ delay: i * 0.08 + 0.1 }}
+                <Link
+                  key={link.name}
+                  href={link.path}
                   onClick={() => setMenuOpen(false)}
                 >
-                  {link}
-                </motion.a>
+                  <motion.div
+                    className={`text-white text-5xl font-black tracking-tight uppercase hover:pl-4 transition-all duration-200 cursor-pointer flex items-center gap-4 ${
+                      location === link.path ? "opacity-100" : "opacity-40"
+                    }`}
+                    initial={{ x: 60, opacity: 0 }}
+                    animate={{ x: 0, opacity: location === link.path ? 1 : 0.4 }}
+                    transition={{ delay: i * 0.08 + 0.1 }}
+                  >
+                    {location === link.path && <div className="w-4 h-4 bg-white" />}
+                    {link.name}
+                  </motion.div>
+                </Link>
               ))}
             </div>
           </motion.div>

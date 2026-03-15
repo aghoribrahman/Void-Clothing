@@ -43,8 +43,8 @@ export function ProductGrid({ products }: ProductGridProps) {
       {/* Broken grid */}
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {/* Big card */}
-        <div className="col-span-2 row-span-2 border-b-2 border-r-2 border-black p-3 md:p-5">
-          <ProductCard product={products[0]} delay={0} />
+        <div className="col-span-2 border-b-2 border-r-2 border-black p-3 md:p-5">
+          <ProductCard product={products[0]} delay={0} imageAspectRatio="aspect-[16/10]" />
         </div>
         {/* Normal cards */}
         {products.slice(1, 5).map((p, i) => (
