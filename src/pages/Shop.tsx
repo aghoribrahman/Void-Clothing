@@ -23,14 +23,14 @@ export default function Shop() {
       {/* Header Space for Nav */}
       <div className="h-24 md:h-32" />
       
-      <header className="px-6 md:px-10 py-12 md:py-20 border-b-2 border-black">
+      <header className="px-6 md:px-10 py-10 md:py-20 border-b-2 border-black">
         <motion.div
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, ease: [0.19, 1, 0.22, 1] }}
         >
-          <span className="text-[10px] font-black tracking-[0.4em] uppercase opacity-60 mb-4 block">BROWSE ALL PIECES</span>
-          <h1 className="text-[clamp(3rem,10vw,8rem)] font-black uppercase leading-[0.85] tracking-tighter">
+          <span className="text-[10px] font-black tracking-[0.4em] uppercase opacity-60 mb-3 md:mb-4 block">BROWSE ALL PIECES</span>
+          <h1 className="text-[clamp(2.5rem,12vw,8rem)] font-black uppercase leading-[0.85] tracking-tighter text-balance">
             SHOP THE<br />ENTIRE VOID
           </h1>
         </motion.div>
