@@ -43,20 +43,20 @@ export function ProductGrid({ products }: ProductGridProps) {
       {/* Broken grid */}
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {/* Big card */}
-        <div className="col-span-2 border-b-2 border-r-2 border-black p-3 md:p-5">
+        <div className="col-span-2 border-b-2 sm:border-r-2 border-black p-2.5 md:p-5">
           <ProductCard product={products[0]} delay={0} imageAspectRatio="aspect-[16/10]" />
         </div>
         {/* Normal cards */}
         {products.slice(1, 5).map((p, i) => (
           <div
             key={p.id}
-            className={`border-b-2 border-black p-2.5 md:p-3.5 ${i % 2 === 0 ? "border-r-2" : ""}`}
+            className={`border-b-2 border-black p-2.5 md:p-3.5 ${i % 2 === 0 ? "border-r-2" : "border-r-2 sm:border-r-0 md:border-r-2"}`}
           >
             <ProductCard product={p} delay={i * 80} />
           </div>
         ))}
-        {/* Last card — full width */}
-        <div className="col-span-2 border-r-2 border-black p-2.5 md:p-3.5 lg:col-span-1">
+        {/* Last card — full width on mobile, part of grid on desktop */}
+        <div className="col-span-2 border-r-0 md:border-r-2 border-black p-2.5 md:p-3.5 lg:col-span-1">
           <ProductCard product={products[5]} delay={300} />
         </div>
       </div>

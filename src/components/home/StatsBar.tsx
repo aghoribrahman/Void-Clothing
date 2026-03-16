@@ -11,10 +11,12 @@ export function StatsBar() {
       {stats.map((s, i) => (
         <div
           key={s.label}
-          className={`px-6 py-6 md:py-8 ${i < stats.length - 1 ? "border-r-2 border-black" : ""}`}
+          className={`px-6 py-6 md:py-8 border-b-2 md:border-b-0 border-black ${
+            (i + 1) % 2 === 0 ? "md:border-r-2" : "border-r-2"
+          } ${i === stats.length - 1 ? "md:border-r-0" : ""}`}
         >
-          <div className="text-3xl md:text-4xl font-black tracking-tighter leading-none">{s.value}</div>
-          <div className="text-[8px] font-black tracking-[0.2em] text-[#1A1A1A] uppercase mt-1.5 opacity-50">{s.label}</div>
+          <div className="text-2xl sm:text-3xl md:text-4xl font-black tracking-tighter leading-none">{s.value}</div>
+          <div className="text-[7px] md:text-[8px] font-black tracking-[0.2em] text-[#1A1A1A] uppercase mt-1.5 opacity-50">{s.label}</div>
         </div>
       ))}
     </div>

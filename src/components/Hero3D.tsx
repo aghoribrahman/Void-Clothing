@@ -1,10 +1,14 @@
 import { motion } from "framer-motion";
 
-export function Hero3D() {
+interface Hero3DProps {
+  imageUrl?: string;
+}
+
+export function Hero3D({ imageUrl }: Hero3DProps) {
   return (
     <div className="absolute inset-0 flex items-center justify-center bg-white">
       {/* Animated geometric orb — CSS/SVG fallback (WebGL not available in sandbox) */}
-      <div className="relative w-72 h-72 md:w-96 md:h-96">
+      <div className="relative w-80 h-80 md:w-96 md:h-96">
         {/* Outermost ring */}
         <motion.div
           className="absolute inset-0 border-2 border-black rounded-full"
@@ -31,15 +35,56 @@ export function Hero3D() {
           transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
           style={{ borderRadius: "50% 50% 30% 70% / 50% 70% 30% 50%" }}
         />
-        {/* Center dot */}
+        {/* Center content (Image or Dot) */}
         <motion.div
           className="absolute inset-0 flex items-center justify-center"
         >
-          <motion.div
-            className="w-10 h-10 bg-black rounded-full"
-            animate={{ scale: [1, 1.3, 1] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          />
+          {imageUrl ? (
+            <motion.div
+              className="relative w-56 h-56 md:w-64 md:h-64 flex items-center justify-center pointer-events-auto group cursor-pointer"
+              animate={{ 
+                y: [0, -15, 0],
+                rotate: [0, 2, -2, 0]
+              }}
+              whileHover={{ 
+                scale: 1.1,
+                rotate: [0, -5, 5, 0],
+                transition: { duration: 0.4, ease: "easeInOut" }
+              }}
+              transition={{ 
+                duration: 4, 
+                repeat: Infinity, 
+                ease: "easeInOut" 
+              }}
+            >
+              {/* 3D Frame Extrusion (Back Layer) */}
+              <div className="absolute inset-0 bg-black rounded-[2rem] translate-x-3 translate-y-3 opacity-20 blur-sm" />
+              <div className="absolute inset-0 bg-black rounded-[2rem] translate-x-1.5 translate-y-1.5" />
+              
+              {/* Main Image Container (Front Layer) */}
+              <div className="relative w-full h-full bg-white border-4 border-black rounded-[2rem] overflow-hidden flex items-center justify-center p-6 shadow-2xl transition-transform duration-300 group-hover:-translate-x-1 group-hover:-translate-y-1">
+                <img 
+                  src={imageUrl} 
+                  alt="Featured Product" 
+                  className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110"
+                />
+                
+                {/* Glossy overlay */}
+                <div className="absolute inset-0 bg-gradient-to-tr from-white/20 to-transparent pointer-events-none" />
+              </div>
+
+              {/* Tag overlay */}
+              <div className="absolute -bottom-2 -right-2 bg-black text-white text-[8px] font-black px-3 py-1 rounded-full border-2 border-white uppercase tracking-widest scale-0 group-hover:scale-100 transition-transform duration-300 delay-100">
+                VIEW
+              </div>
+            </motion.div>
+          ) : (
+            <motion.div
+              className="w-10 h-10 bg-black rounded-full"
+              animate={{ scale: [1, 1.3, 1] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            />
+          )}
         </motion.div>
 
         {/* Orbiting dot 1 */}
