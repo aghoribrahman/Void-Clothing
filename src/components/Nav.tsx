@@ -1,15 +1,13 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ShoppingBag } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Link, useLocation } from "wouter";
 import { useMagneticCursor } from "@/hooks/useMagneticCursor";
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [cartCount] = useState(3);
 
-  const cartRef = useMagneticCursor(0.5);
   const menuRef = useMagneticCursor(0.5);
 
   useEffect(() => {
@@ -61,18 +59,6 @@ export function Nav() {
           </div>
 
           <div className="flex items-center gap-2.5">
-            <button
-              ref={cartRef as React.Ref<HTMLButtonElement>}
-              className="relative p-0.5"
-              data-magnetic
-            >
-              <ShoppingBag size={16} strokeWidth={2.5} />
-              {cartCount > 0 && (
-                <span className="absolute -top-1 -right-1.5 w-3.5 h-3.5 bg-black text-white text-[8px] font-black flex items-center justify-center border border-white">
-                  {cartCount}
-                </span>
-              )}
-            </button>
             <button
               ref={menuRef as React.Ref<HTMLButtonElement>}
               className="md:hidden p-1"
